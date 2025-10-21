@@ -13,7 +13,7 @@ def create_courier():
     requests.post(url= f'{Url.MAIN_URL}{Url.CREATE_COURIER}', json=create_courier_body)
     login_courier = requests.post(url= f'{Url.MAIN_URL}{Url.COURIER_LOGIN}', json=login_courier_body)
     yield [create_courier_body, login_courier_body, login, password]
-    requests.delete(f'{Url.MAIN_URL}{Url.COURIER_DELETE}{login_courier.json()['id']}')
+    requests.delete(f'{Url.MAIN_URL}{Url.COURIER_DELETE}{login_courier.json()["id"]}')
 
 @pytest.fixture
 def generate_courier_data():
@@ -24,4 +24,20 @@ def generate_courier_data():
     login_courier_body = {'login': login, 'password': password}
     yield [create_courier_body, login_courier_body]
     login_courier = requests.post(url= f'{Url.MAIN_URL}{Url.COURIER_LOGIN}', json=login_courier_body)
-    requests.delete(f'{Url.MAIN_URL}{Url.COURIER_DELETE}{login_courier.json()['id']}')
+    requests.delete(f'{Url.MAIN_URL}{Url.COURIER_DELETE}{login_courier.json()["id"]}')
+
+@pytest.fixture
+def create_courier_no_login():
+    password = generators.password_generator()
+    name = generators.name_generator()
+    create_courier_body = {'password': password, 'first_name': name}
+    requests.post(url= f'{Url.MAIN_URL}{Url.CREATE_COURIER}', json=create_courier_body)
+    yield [create_courier_body]
+
+@pytest.fixture
+def create_courier_no_password():
+    login = generators.login_generator()
+    name = generators.name_generator()
+    create_courier_body = {'login': login, 'first_name': name}
+    requests.post(url= f'{Url.MAIN_URL}{Url.CREATE_COURIER}', json=create_courier_body)
+    yield [create_courier_body]

@@ -13,3 +13,11 @@ def password_generator():
 def name_generator():
     generate_name = fake.first_name()
     return generate_name
+
+def false_login_generator():
+    false_login = fake.user_name()
+    return false_login
+
+def false_password_generator():
+    false_password = fake.random_number(5)
+    return false_password

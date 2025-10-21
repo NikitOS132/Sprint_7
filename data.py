@@ -1,5 +1,3 @@
-import generators
-
 class Url:
     MAIN_URL = 'http://qa-scooter.praktikum-services.ru/'
     CREATE_COURIER = 'api/v1/courier'
@@ -11,7 +9,7 @@ class Url:
     TRACK_ORDER = 'api/v1/orders/track?t='
 
 class DataForOrder:
-    order_data = {
+    user_data = {
         "firstName": "Yakov",
         "lastName": "Shustrov",
         "address": "Buzheninova 9",
@@ -21,12 +19,8 @@ class DataForOrder:
         "deliveryDate": "2024-10-15",
         "comment": "Come in"
     }
-    scooter_color = [['BLACK'], ['BLUE'], (['BLACK'], ['BLUE']), ['']]
+    color = [['BLACK'], ['BLUE'], (['BLACK'], ['BLUE']), ['']]
 
-class DataForRegistration:
-    reg_data = [
-        {'login': generators.login_generator(), 'firstName': generators.name_generator()}
-    ]
 class ResponseBody:
     COURIER_CREATION_SUCCESS = {'ok': True}
     COURIER_NAME_ALREADY_EXIST = {'code': 409, 'message': 'Этот логин уже используется. Попробуйте другой.'}
